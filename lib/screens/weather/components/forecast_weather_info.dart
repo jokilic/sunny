@@ -27,7 +27,7 @@ class ForecastWeatherInfo extends StatelessWidget {
             '${forecastHours[index].toString()}:00' ?? noForecastHour,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: whiteColor,
+              color: textColor,
               fontSize: 16.0,
               fontWeight: FontWeight.w700,
             ),
@@ -46,7 +46,7 @@ class ForecastWeatherInfo extends StatelessWidget {
                 child: Text(
                   forecastTemperatures[index].toString() ?? noTemperature,
                   style: TextStyle(
-                    color: whiteColor,
+                    color: textColor,
                     fontSize: 16.0,
                     fontWeight: FontWeight.w700,
                   ),
@@ -55,7 +55,7 @@ class ForecastWeatherInfo extends StatelessWidget {
               Text(
                 '°',
                 style: TextStyle(
-                  color: whiteColor,
+                  color: textColor,
                   fontSize: 16.0,
                   fontWeight: FontWeight.w700,
                 ),

@@ -27,7 +27,7 @@ class WeatherInfo extends StatelessWidget {
                 child: Text(
                   temperature.toString() ?? noTemperature,
                   style: TextStyle(
-                    color: whiteColor,
+                    color: textColor,
                     fontSize: 96.0,
                     fontWeight: FontWeight.w600,
                   ),
@@ -36,7 +36,7 @@ class WeatherInfo extends StatelessWidget {
               Text(
                 '°',
                 style: TextStyle(
-                  color: whiteColor,
+                  color: textColor,
                   fontSize: 50.0,
                   fontWeight: FontWeight.w600,
                 ),
@@ -50,7 +50,7 @@ class WeatherInfo extends StatelessWidget {
             condition ?? noCondition,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: whiteColor,
+              color: textColor,
               fontSize: 24.0,
               fontWeight: FontWeight.w600,
             ),

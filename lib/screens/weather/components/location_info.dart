@@ -25,7 +25,7 @@ class LocationInfo extends StatelessWidget {
         children: <Widget>[
           SvgPicture.asset(
             gpsIcon,
-            color: whiteColor,
+            color: textColor,
             height: 26.0,
           ),
           SizedBox(height: 8.0),
@@ -34,7 +34,7 @@ class LocationInfo extends StatelessWidget {
               '$cityName, $countryName' ?? noCity,
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: whiteColor,
+                color: textColor,
                 fontSize: 22.0,
                 fontWeight: FontWeight.w600,
               ),
@@ -44,7 +44,7 @@ class LocationInfo extends StatelessWidget {
           Text(
             currentTime ?? noTime,
             style: TextStyle(
-              color: whiteColor.withOpacity(0.6),
+              color: textColor.withOpacity(0.6),
               fontSize: 14.0,
               fontWeight: FontWeight.w500,
             ),

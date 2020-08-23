@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:loading/loading.dart';
 import 'package:loading/indicator/ball_pulse_indicator.dart';
 
 import '../../colors.dart';
+import '../../strings.dart';
 import '../weather/weather_screen.dart';
 import '../../services/weather.dart';
 
@@ -46,19 +48,26 @@ class _LoadingScreenState extends State<LoadingScreen> {
         width: double.infinity,
         color: currentColor,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Text(
-              'Dobrodošli u Sunny',
-              style: Theme.of(context).textTheme.headline1,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset(
+              icon,
+              height: 125.0,
             ),
+            SizedBox(height: 50.0),
+            Text(
+              waitString,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: textColor,
+                fontSize: 30.0,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            SizedBox(height: 50.0),
             Loading(
               indicator: BallPulseIndicator(),
-              color: Colors.white,
-            ),
-            Text(
-              'Pričekajte trenutak',
-              style: Theme.of(context).textTheme.headline1,
+              color: textColor,
             ),
           ],
         ),

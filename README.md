@@ -8,15 +8,16 @@ It uses [yr.no](https://www.yr.no) as the weather provider.
 ## Things I still want to do:
 
 - [ ] Make the **LoadingScreen** a bit nicer looking
-- [ ] Move condition variables to *conditions.dart*
-- [ ] Make a general icon for unknown weather, call it **noweather.svg**
 - [ ] Remove *height* and *width* tags from each SVG
-- [ ] Test on smaller devices, add scrolling functionality
 - [ ] Implement a modal view to enter a new city
 - [ ] Add a GPS icon on the top left to check for weather via location
 - [ ] Long press on the menu icon brings you to the **InfoScreen**
 - [ ] Implement the **InfoScreen**
-- [ ] Colors should change depending on the weather condition
+- [ ] Think about how to approach the hours in the forecast (places with a different timezone cause troubles)
+- [x] Make a general icon for unknown weather, call it **noweather.svg**
+- [x] Test on smaller devices, add scrolling functionality
+- [x] Colors should change depending on the weather condition
+- [x] Move condition variables to *conditions.dart*
 - [x] Replace hardcoded text with variables
 - [x] Create other weather icons from the downloaded ones
 - [x] Rename icons to the required names (e.g. **clearsky_day**)

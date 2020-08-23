@@ -28,7 +28,7 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
-  int numberOfForecasts = 10;
+  int numberOfForecasts = 14;
   String currentTime;
   String currentWeatherCondition;
   String currentConditionIcon;
@@ -53,6 +53,17 @@ class _WeatherScreenState extends State<WeatherScreen> {
       weatherData['properties']['timeseries'][index]['data']['next_1_hours']
           ['summary']['symbol_code'];
 
+  int getForecastTime(dynamic weatherData, int index) {
+    String forecastTimeString =
+        weatherData['properties']['timeseries'][index]['time'];
+    int forecastTime = int.parse(forecastTimeString.substring(
+            forecastTimeString.indexOf('T') + 1, 13)) +
+        2;
+    if (forecastTime == 24) forecastTime = 0;
+    if (forecastTime == 25) forecastTime = 1;
+    return forecastTime;
+  }
+
   void updateCurrentUI(dynamic weatherData) {
     currentTime = DateFormat('E, dd MMM, H:mm').format(currentTimeDirty);
     currentTemperature = getTemperature(weatherData, 0).toInt();
@@ -63,16 +74,12 @@ class _WeatherScreenState extends State<WeatherScreen> {
   }
 
   void updateForecastUI(dynamic weatherData) {
-    int currentHour = int.parse(DateFormat('H').format(currentTimeDirty));
-
     for (int i = 0; i < numberOfForecasts; i++) {
-      if (currentHour == 24) currentHour = 0;
-      forecastHours.add(currentHour + 1);
-      currentHour++;
-      forecastConditions.add(getWeatherCondition(weatherData, i + 1));
+      forecastHours.add(getForecastTime(weatherData, i));
+      forecastConditions.add(getWeatherCondition(weatherData, i));
       forecastConditionIcons
           .add('$conditionIconRootAddress${forecastConditions[i]}.svg');
-      forecastTemperatures.add(getTemperature(weatherData, i + 1).toInt());
+      forecastTemperatures.add(getTemperature(weatherData, i).toInt());
     }
   }
 
@@ -85,48 +92,51 @@ class _WeatherScreenState extends State<WeatherScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: currentColor,
       body: SafeArea(
         child: Container(
           height: double.infinity,
           width: double.infinity,
           color: currentColor,
-          child: Column(
-            children: <Widget>[
-              CityButton(
-                () => print('Stisnuo si Menu button'),
-              ),
-              Column(
-                children: <Widget>[
-                  LocationInfo(
-                    cityName: widget.cityName,
-                    countryName: widget.countryName,
-                    currentTime: currentTime,
-                  ),
-                  SvgPicture.asset(
-                    currentConditionIcon ?? noConditionIcon,
-                    height: 250.0,
-                  ),
-                  WeatherInfo(
-                    temperature: currentTemperature,
-                    condition: currentWeatherCondition,
-                  ),
-                  SizedBox(height: 50.0),
-                  SizedBox(
-                    height: 150.0,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: numberOfForecasts,
-                      itemBuilder: (context, index) => ForecastWeatherInfo(
-                        index: index,
-                        forecastHours: forecastHours,
-                        forecastConditionIcons: forecastConditionIcons,
-                        forecastTemperatures: forecastTemperatures,
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                CityButton(
+                  () => print('Stisnuo si Menu button'),
+                ),
+                Column(
+                  children: <Widget>[
+                    LocationInfo(
+                      cityName: widget.cityName,
+                      countryName: widget.countryName,
+                      currentTime: currentTime,
+                    ),
+                    SvgPicture.asset(
+                      currentConditionIcon ?? noConditionIcon,
+                      height: 250.0,
+                    ),
+                    WeatherInfo(
+                      temperature: currentTemperature,
+                      condition: currentWeatherCondition,
+                    ),
+                    SizedBox(height: 50.0),
+                    SizedBox(
+                      height: 150.0,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: numberOfForecasts,
+                        itemBuilder: (context, index) => ForecastWeatherInfo(
+                          index: index,
+                          forecastHours: forecastHours,
+                          forecastConditionIcons: forecastConditionIcons,
+                          forecastTemperatures: forecastTemperatures,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
