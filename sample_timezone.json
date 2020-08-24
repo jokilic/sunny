@@ -1,0 +1,15 @@
+{
+    "status": "OK",
+    "message": "",
+    "countryCode": "HR",
+    "countryName": "Croatia",
+    "zoneName": "Europe/Zagreb",
+    "abbreviation": "CEST",
+    "gmtOffset": 7200,
+    "dst": "1",
+    "zoneStart": 1585443600,
+    "zoneEnd": 1603587600,
+    "nextAbbreviation": "CET",
+    "timestamp": 1598287122,
+    "formatted": "2020-08-24 16:38:42"
+}

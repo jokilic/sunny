@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+import 'package:sunny/screens/weather/components/choose_city.dart';
 
 import '../../colors.dart';
 import '../../strings.dart';
@@ -14,11 +15,13 @@ class WeatherScreen extends StatefulWidget {
   static const routeName = '/weather-screen';
 
   final locationWeather;
+  final timezoneData;
   final String cityName;
   final String countryName;
 
   WeatherScreen({
     this.locationWeather,
+    this.timezoneData,
     this.cityName,
     this.countryName,
   });
@@ -53,15 +56,11 @@ class _WeatherScreenState extends State<WeatherScreen> {
       weatherData['properties']['timeseries'][index]['data']['next_1_hours']
           ['summary']['symbol_code'];
 
-  int getForecastTime(dynamic weatherData, int index) {
-    String forecastTimeString =
-        weatherData['properties']['timeseries'][index]['time'];
-    int forecastTime = int.parse(forecastTimeString.substring(
-            forecastTimeString.indexOf('T') + 1, 13)) +
-        2;
-    if (forecastTime == 24) forecastTime = 0;
-    if (forecastTime == 25) forecastTime = 1;
-    return forecastTime;
+  int getCurrentHour(dynamic timezoneData) {
+    String hour = timezoneData['formatted'];
+    hour = hour.substring(11, 13);
+
+    return int.parse(hour);
   }
 
   void updateCurrentUI(dynamic weatherData) {
@@ -74,8 +73,12 @@ class _WeatherScreenState extends State<WeatherScreen> {
   }
 
   void updateForecastUI(dynamic weatherData) {
+    int currentHour = getCurrentHour(widget.timezoneData);
+
     for (int i = 0; i < numberOfForecasts; i++) {
-      forecastHours.add(getForecastTime(weatherData, i));
+      if (currentHour == 24) currentHour = 0;
+      forecastHours.add(currentHour);
+      currentHour++;
       forecastConditions.add(getWeatherCondition(weatherData, i));
       forecastConditionIcons
           .add('$conditionIconRootAddress${forecastConditions[i]}.svg');
@@ -86,6 +89,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
   void updateUI(dynamic weatherData) {
     updateCurrentUI(weatherData);
     updateForecastUI(weatherData);
+    getCurrentHour(widget.timezoneData);
+
     setState(() {});
   }
 
@@ -102,7 +107,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
             child: Column(
               children: <Widget>[
                 CityButton(
-                  () => print('Stisnuo si Menu button'),
+                  () => chooseCity(context),
                 ),
                 Column(
                   children: <Widget>[
@@ -119,7 +124,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       temperature: currentTemperature,
                       condition: currentWeatherCondition,
                     ),
-                    SizedBox(height: 50.0),
+                    SizedBox(height: 36.0),
                     SizedBox(
                       height: 150.0,
                       child: ListView.builder(

@@ -18,7 +18,7 @@ class Location {
           await Geolocator().placemarkFromCoordinates(
         latitude,
         longitude,
-        localeIdentifier: 'hr_HR',
+        // localeIdentifier: 'hr_HR',
       );
 
       cityName = locationName[0].locality;

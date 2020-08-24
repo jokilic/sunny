@@ -9,7 +9,7 @@ class Weather {
     await location.getLocation();
 
     Network network = Network(
-        '$weatherUrl?lat=${location.latitude}&lon=${location.longitude}');
+        '$weatherApi?lat=${location.latitude}&lon=${location.longitude}');
 
     var weatherData = await network.getData();
     return weatherData;
@@ -23,5 +23,15 @@ class Weather {
     locationName.add(location.countryName);
 
     return locationName;
+  }
+
+  Future<dynamic> getCurrentTimezone() async {
+    await location.getLocation();
+
+    Network network = Network(
+        '$timeZoneDbApiRoot?key=$timeZoneDbApiKey&format=json&by=position&lat=${location.latitude}&lng=${location.longitude}');
+
+    var timezoneData = await network.getData();
+    return timezoneData;
   }
 }
