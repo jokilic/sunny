@@ -8,13 +8,13 @@ class CityButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.only(
-        top: 24.0,
-        right: 24.0,
-      ),
-      alignment: Alignment.centerRight,
+      height: size.height * 0.06,
+      margin: EdgeInsets.only(right: 24.0),
+      alignment: Alignment.bottomRight,
       child: GestureDetector(
         onTap: onTap,
         child: Container(

@@ -197,7 +197,7 @@ String getCondition(weatherCondition) {
 
 // Weather statuses
 const String clearsky_day = 'Sunny';
-const String clearsky_night = 'Clear sky';
+const String clearsky_night = 'Starry night';
 
 const String fair_day = 'Fair';
 const String fair_night = 'Fair';

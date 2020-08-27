@@ -4,17 +4,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../colors.dart';
 import '../../../strings.dart';
 
-class ForecastWeatherInfo extends StatelessWidget {
-  final int index;
-  final List<int> forecastHours;
-  final List<String> forecastConditionIcons;
-  final List<int> forecastTemperatures;
+class HourlyForecastWidget extends StatelessWidget {
+  final int hourlyForecastHour;
+  final String hourlyForecastConditionIcon;
+  final int hourlyForecastTemperature;
 
-  ForecastWeatherInfo({
-    this.index,
-    this.forecastHours,
-    this.forecastConditionIcons,
-    this.forecastTemperatures,
+  HourlyForecastWidget({
+    this.hourlyForecastHour,
+    this.hourlyForecastConditionIcon,
+    this.hourlyForecastTemperature,
   });
 
   @override
@@ -24,7 +22,7 @@ class ForecastWeatherInfo extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            '${forecastHours[index].toString()}:00' ?? noForecastHour,
+            '${hourlyForecastHour.toString()}:00' ?? noForecastHour,
             textAlign: TextAlign.center,
             style: TextStyle(
               color: textColor,
@@ -34,7 +32,7 @@ class ForecastWeatherInfo extends StatelessWidget {
           ),
           SizedBox(height: 8.0),
           SvgPicture.asset(
-            forecastConditionIcons[index] ?? noConditionIcon,
+            hourlyForecastConditionIcon ?? noConditionIcon,
             height: 50.0,
           ),
           SizedBox(height: 8.0),
@@ -44,7 +42,7 @@ class ForecastWeatherInfo extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
-                  forecastTemperatures[index].toString() ?? noTemperature,
+                  hourlyForecastTemperature.toString() ?? noTemperature,
                   style: TextStyle(
                     color: textColor,
                     fontSize: 16.0,

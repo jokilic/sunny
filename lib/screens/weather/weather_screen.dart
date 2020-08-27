@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
-import 'package:sunny/screens/weather/components/choose_city.dart';
 
 import '../../colors.dart';
 import '../../strings.dart';
+import '../../models/hourly_forecast.dart';
+import '../../models/current_forecast.dart';
+import '../../components/background_image.dart';
 import './components/city_button.dart';
 import './components/location_info.dart';
 import './components/weather_info.dart';
 import './components/conditions.dart';
-import './components/forecast_weather_info.dart';
+import './components/hourly_forecast_widget.dart';
+import './components/choose_city.dart';
+import './components/categories.dart';
 
 class WeatherScreen extends StatefulWidget {
   static const routeName = '/weather-screen';
@@ -31,16 +35,10 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
-  int numberOfForecasts = 14;
-  String currentTime;
-  String currentWeatherCondition;
-  String currentConditionIcon;
-  int currentTemperature;
   DateTime currentTimeDirty = DateTime.now();
-  List<int> forecastHours = [];
-  List<String> forecastConditions = [];
-  List<String> forecastConditionIcons = [];
-  List<int> forecastTemperatures = [];
+  int numberOfForecasts = 12;
+  CurrentForecast currentForecast = CurrentForecast();
+  List<HourlyForecast> hourlyForecastList = [];
 
   @override
   void initState() {
@@ -64,45 +62,52 @@ class _WeatherScreenState extends State<WeatherScreen> {
   }
 
   void updateCurrentUI(dynamic weatherData) {
-    currentTime = DateFormat('E, dd MMM, H:mm').format(currentTimeDirty);
-    currentTemperature = getTemperature(weatherData, 0).toInt();
-    currentWeatherCondition = getWeatherCondition(weatherData, 0);
-    currentConditionIcon =
-        '$conditionIconRootAddress$currentWeatherCondition.svg';
-    currentWeatherCondition = getCondition(currentWeatherCondition);
+    currentForecast.condition = getWeatherCondition(weatherData, 0);
+
+    currentForecast = CurrentForecast(
+      time: DateFormat('E, dd MMM, H:mm').format(currentTimeDirty),
+      temperature: getTemperature(weatherData, 0).toInt(),
+      conditionIcon:
+          '$conditionIconRootAddress${getWeatherCondition(weatherData, 0)}.svg',
+      condition: getCondition(currentForecast.condition),
+    );
   }
 
-  void updateForecastUI(dynamic weatherData) {
+  void updateHourlyForecastUI(dynamic weatherData) {
     int currentHour = getCurrentHour(widget.timezoneData);
 
     for (int i = 0; i < numberOfForecasts; i++) {
       if (currentHour == 24) currentHour = 0;
-      forecastHours.add(currentHour);
+
+      hourlyForecastList.add(
+        HourlyForecast(
+          condition: getWeatherCondition(weatherData, i),
+          conditionIcon:
+              '$conditionIconRootAddress${getWeatherCondition(weatherData, i)}.svg',
+          hour: currentHour,
+          temperature: getTemperature(weatherData, i).toInt(),
+        ),
+      );
       currentHour++;
-      forecastConditions.add(getWeatherCondition(weatherData, i));
-      forecastConditionIcons
-          .add('$conditionIconRootAddress${forecastConditions[i]}.svg');
-      forecastTemperatures.add(getTemperature(weatherData, i).toInt());
     }
   }
 
   void updateUI(dynamic weatherData) {
-    updateCurrentUI(weatherData);
-    updateForecastUI(weatherData);
     getCurrentHour(widget.timezoneData);
+    updateCurrentUI(weatherData);
+    updateHourlyForecastUI(weatherData);
 
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: currentColor,
-      body: SafeArea(
-        child: Container(
-          height: double.infinity,
-          width: double.infinity,
-          color: currentColor,
+      body: BackgroundImage(
+        child: SafeArea(
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
@@ -114,27 +119,29 @@ class _WeatherScreenState extends State<WeatherScreen> {
                     LocationInfo(
                       cityName: widget.cityName,
                       countryName: widget.countryName,
-                      currentTime: currentTime,
+                      currentTime: currentForecast.time,
                     ),
                     SvgPicture.asset(
-                      currentConditionIcon ?? noConditionIcon,
-                      height: 250.0,
+                      currentForecast.conditionIcon ?? noConditionIcon,
+                      height: size.height * 0.3,
                     ),
                     WeatherInfo(
-                      temperature: currentTemperature,
-                      condition: currentWeatherCondition,
+                      temperature: currentForecast.temperature,
+                      condition: currentForecast.condition,
                     ),
-                    SizedBox(height: 36.0),
+                    SizedBox(height: size.height * 0.08),
+                    Categories(),
                     SizedBox(
-                      height: 150.0,
+                      height: size.height * 0.25,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: numberOfForecasts,
-                        itemBuilder: (context, index) => ForecastWeatherInfo(
-                          index: index,
-                          forecastHours: forecastHours,
-                          forecastConditionIcons: forecastConditionIcons,
-                          forecastTemperatures: forecastTemperatures,
+                        itemBuilder: (context, index) => HourlyForecastWidget(
+                          hourlyForecastHour: hourlyForecastList[index].hour,
+                          hourlyForecastConditionIcon:
+                              hourlyForecastList[index].conditionIcon,
+                          hourlyForecastTemperature:
+                              hourlyForecastList[index].temperature,
                         ),
                       ),
                     ),

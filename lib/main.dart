@@ -5,7 +5,7 @@ import 'strings.dart';
 
 import './screens/loading/loading_screen.dart';
 import './screens/weather/weather_screen.dart';
-import './screens/choose_city/choose_city_screen.dart';
+import './screens/info/info_screen.dart';
 
 void main() => runApp(Sunny());
 
@@ -18,7 +18,7 @@ class Sunny extends StatelessWidget {
       routes: {
         LoadingScreen.routeName: (context) => LoadingScreen(),
         WeatherScreen.routeName: (context) => WeatherScreen(),
-        ChooseCityScreen.routeName: (context) => ChooseCityScreen(),
+        InfoScreen.routeName: (context) => InfoScreen(),
       },
       title: appName,
       theme: ThemeData(

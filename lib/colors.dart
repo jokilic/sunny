@@ -5,7 +5,7 @@ Color currentColor = backgroundColor;
 const Color backgroundColor = Color(0xFF263238);
 const Color textColor = Color(0xFFFFFFFF);
 
-const Color dayColor = Color(0xFFFDAE74);
+const Color dayColor = Color(0xFF0D47A1);
 const Color nightColor = Color(0xFF100F3A);
 const Color rainColor = Color(0xFF928EFF);
 const Color snowColor = Color(0xFFCFD8DC);
