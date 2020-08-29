@@ -6,13 +6,13 @@ import '../../../strings.dart';
 
 class HourlyForecastWidget extends StatelessWidget {
   final int hourlyForecastHour;
-  final String hourlyForecastConditionIcon;
   final int hourlyForecastTemperature;
+  final String hourlyForecastConditionIcon;
 
   HourlyForecastWidget({
     this.hourlyForecastHour,
-    this.hourlyForecastConditionIcon,
     this.hourlyForecastTemperature,
+    this.hourlyForecastConditionIcon,
   });
 
   @override

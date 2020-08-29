@@ -16,7 +16,7 @@ class SearchButton extends StatelessWidget {
     return FlatButton(
       child: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: 50.0,
+          horizontal: 36.0,
           vertical: 20.0,
         ),
         child: Text(

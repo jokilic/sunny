@@ -1,17 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:sunny/screens/weather/components/search_button.dart';
 
 import '../../../colors.dart';
 import '../../../strings.dart';
+import '../../../services/weather.dart';
+import '../weather_screen.dart';
 import './city_textfield.dart';
+import './search_button.dart';
 
 void chooseCity(BuildContext context) {
   Size size = MediaQuery.of(context).size;
 
+  void getWeather(chosenCity) async {
+    print(chosenCity);
+    var weatherData = await Weather().getCustomWeather(chosenCity);
+    var locationName = await Weather().getCustomName(chosenCity);
+    var timezoneData = await Weather().getCustomTimezone(chosenCity);
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return WeatherScreen(
+            locationWeather: weatherData,
+            timezoneData: timezoneData,
+            cityName: locationName[0],
+            countryName: locationName[1],
+          );
+        },
+      ),
+    );
+  }
+
   showModalBottomSheet(
+    isScrollControlled: true,
     context: context,
     builder: (context) {
       return SingleChildScrollView(
+        padding:
+            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         child: Container(
           width: double.infinity,
           height: size.height * 0.4,
@@ -25,7 +51,6 @@ void chooseCity(BuildContext context) {
           ),
           child: SingleChildScrollView(
             child: Column(
-              mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
                   searchString,
@@ -38,7 +63,7 @@ void chooseCity(BuildContext context) {
                 SizedBox(height: 16.0),
                 CityTextField(
                   hintText: searchTextFieldString,
-                  onFieldSubmitted: null,
+                  onFieldSubmitted: getWeather,
                 ),
                 SizedBox(height: 30.0),
                 SearchButton(

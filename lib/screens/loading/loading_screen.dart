@@ -25,7 +25,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void getLocationData() async {
     var weatherData = await Weather().getLocationWeather();
     var locationName = await Weather().getLocationName();
-    var timezoneData = await Weather().getCurrentTimezone();
+    var timezoneData = await Weather().getLocationTimezone();
 
     Navigator.push(
       context,

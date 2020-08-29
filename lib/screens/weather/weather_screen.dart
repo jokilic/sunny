@@ -4,16 +4,17 @@ import 'package:intl/intl.dart';
 
 import '../../colors.dart';
 import '../../strings.dart';
-import '../../models/hourly_forecast.dart';
 import '../../models/current_forecast.dart';
+import '../../models/hourly_forecast.dart';
+import '../../models/daily_forecast.dart';
 import '../../components/background_image.dart';
 import './components/city_button.dart';
 import './components/location_info.dart';
 import './components/weather_info.dart';
 import './components/conditions.dart';
 import './components/hourly_forecast_widget.dart';
+import './components/daily_forecast_widget.dart';
 import './components/choose_city.dart';
-import './components/categories.dart';
 
 class WeatherScreen extends StatefulWidget {
   static const routeName = '/weather-screen';
@@ -37,8 +38,11 @@ class WeatherScreen extends StatefulWidget {
 class _WeatherScreenState extends State<WeatherScreen> {
   DateTime currentTimeDirty = DateTime.now();
   int numberOfForecasts = 12;
+  List<String> categories = ['Today', 'Week'];
+  int selectedIndex = 0;
   CurrentForecast currentForecast = CurrentForecast();
   List<HourlyForecast> hourlyForecastList = [];
+  List<DailyForecast> dailyForecastList = [];
 
   @override
   void initState() {
@@ -54,11 +58,22 @@ class _WeatherScreenState extends State<WeatherScreen> {
       weatherData['properties']['timeseries'][index]['data']['next_1_hours']
           ['summary']['symbol_code'];
 
+  String getDailyWeatherCondition(dynamic weatherData, int index) =>
+      weatherData['properties']['timeseries'][index]['data']['next_12_hours']
+          ['summary']['symbol_code'];
+
   int getCurrentHour(dynamic timezoneData) {
     String hour = timezoneData['formatted'];
     hour = hour.substring(11, 13);
 
     return int.parse(hour);
+  }
+
+  int getCurrentDate(dynamic timezoneData) {
+    String date = timezoneData['formatted'];
+    date = date.substring(8, 10);
+
+    return int.parse(date);
   }
 
   void updateCurrentUI(dynamic weatherData) {
@@ -92,10 +107,45 @@ class _WeatherScreenState extends State<WeatherScreen> {
     }
   }
 
+  void updateDailyForecastUI(dynamic weatherData, dynamic timezoneData) {
+    int hour;
+    int day;
+    int month;
+    String date;
+    String condition;
+    String conditionIcon;
+    String fullTime;
+
+    for (int i = 0; i < 85; i++) {
+      fullTime = weatherData['properties']['timeseries'][i]['time'];
+
+      hour = int.parse(fullTime.substring(11, 13));
+      day = int.parse(fullTime.substring(8, 10));
+      month = int.parse(fullTime.substring(5, 7));
+
+      if (hour == 0 || hour == 12) {
+        date = '$day.$month.';
+        condition = getDailyWeatherCondition(weatherData, i);
+        conditionIcon = condition;
+        condition = getCondition(condition);
+
+        dailyForecastList.add(
+          DailyForecast(
+                  date: date,
+                  condition: condition,
+                  conditionIcon:
+                      '$conditionIconRootAddress$conditionIcon.svg') ??
+              noConditionIcon,
+        );
+      }
+    }
+  }
+
   void updateUI(dynamic weatherData) {
     getCurrentHour(widget.timezoneData);
     updateCurrentUI(weatherData);
     updateHourlyForecastUI(weatherData);
+    updateDailyForecastUI(weatherData, widget.timezoneData);
 
     setState(() {});
   }
@@ -130,21 +180,78 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       condition: currentForecast.condition,
                     ),
                     SizedBox(height: size.height * 0.08),
-                    Categories(),
                     SizedBox(
-                      height: size.height * 0.25,
+                      height: 50.0,
+                      width: 150.0,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: numberOfForecasts,
-                        itemBuilder: (context, index) => HourlyForecastWidget(
-                          hourlyForecastHour: hourlyForecastList[index].hour,
-                          hourlyForecastConditionIcon:
-                              hourlyForecastList[index].conditionIcon,
-                          hourlyForecastTemperature:
-                              hourlyForecastList[index].temperature,
+                        itemCount: categories.length,
+                        itemBuilder: (context, index) => GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedIndex = index;
+                            });
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 10.0),
+                            child: Column(
+                              children: [
+                                Text(
+                                  categories[index],
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: textColor,
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(top: 5.0),
+                                  decoration: BoxDecoration(
+                                    color: selectedIndex == index
+                                        ? textColor
+                                        : Colors.transparent,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  width: 8.0,
+                                  height: 8.0,
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ),
+                    if (selectedIndex == 0)
+                      SizedBox(
+                        height: size.height * 0.25,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: numberOfForecasts,
+                          itemBuilder: (context, index) => HourlyForecastWidget(
+                            hourlyForecastHour: hourlyForecastList[index].hour,
+                            hourlyForecastConditionIcon:
+                                hourlyForecastList[index].conditionIcon,
+                            hourlyForecastTemperature:
+                                hourlyForecastList[index].temperature,
+                          ),
+                        ),
+                      ),
+                    if (selectedIndex == 1)
+                      SizedBox(
+                        height: size.height * 0.25,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: numberOfForecasts,
+                          itemBuilder: (context, index) => DailyForecastWidget(
+                            dailyForecastDate: dailyForecastList[index].date,
+                            dailyForecastConditionIcon:
+                                dailyForecastList[index].conditionIcon,
+                            dailyForecastCondition:
+                                dailyForecastList[index].condition,
+                          ),
+                        ),
+                      ),
                   ],
                 ),
               ],

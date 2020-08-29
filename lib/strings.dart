@@ -16,7 +16,7 @@ const String icon = 'assets/icons/icon.svg';
 const String waitString = 'Just a moment...';
 const String searchString = 'Some other city?';
 const String searchTextFieldString = 'Enter city here';
-const String searchButtonString = 'Search';
+const String searchButtonString = 'Get weather';
 
 // No weather strings
 const String noCity = 'City unavailable';
