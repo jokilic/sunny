@@ -22,6 +22,11 @@ enum WeatherType {
   custom,
 }
 
+enum Fetching {
+  yes,
+  no,
+}
+
 class WeatherScreen extends StatefulWidget {
   static const routeName = '/weather-screen';
 
@@ -48,6 +53,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
   int numberOfForecasts = 12;
   List<String> categories = ['Today', 'Week'];
   int selectedIndex = 0;
+  Fetching fetching = Fetching.no;
 
   CurrentForecast currentForecast = CurrentForecast();
   List<HourlyForecast> hourlyForecastList = [];
@@ -159,6 +165,13 @@ class _WeatherScreenState extends State<WeatherScreen> {
     setState(() {});
   }
 
+  void fetchLocationWeather() {
+    setState(() {
+      fetching = Fetching.yes;
+      LoadingScreen().getLocationData(context);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -167,126 +180,132 @@ class _WeatherScreenState extends State<WeatherScreen> {
       backgroundColor: currentColor,
       body: BackgroundImage(
         child: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                SizedBox(height: 16.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    widget.weatherType == WeatherType.custom
-                        ? SizedBox(
-                            width: 85.0,
+          child: fetching == Fetching.no
+              ? SingleChildScrollView(
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(height: 16.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          widget.weatherType == WeatherType.custom
+                              ? SizedBox(
+                                  width: 85.0,
+                                  child: TopButton(
+                                    onTap: () => fetchLocationWeather(),
+                                    icon: gpsIcon,
+                                  ),
+                                )
+                              : SizedBox(width: 85.0),
+                          SizedBox(
+                            width: 75.0,
                             child: TopButton(
-                              onTap: () =>
-                                  LoadingScreen().getLocationData(context),
-                              icon: gpsIcon,
-                            ),
-                          )
-                        : SizedBox(width: 85.0),
-                    SizedBox(
-                      width: 75.0,
-                      child: TopButton(
-                        onTap: () => chooseCity(context),
-                        icon: menuIcon,
-                      ),
-                    ),
-                  ],
-                ),
-                Column(
-                  children: <Widget>[
-                    LocationInfo(
-                      cityName: widget.cityName,
-                      countryName: widget.countryName,
-                      currentTime: currentForecast.time,
-                      weatherType: widget.weatherType,
-                    ),
-                    SvgPicture.asset(
-                      currentForecast.conditionIcon ?? noConditionIcon,
-                      height: size.height * 0.3,
-                    ),
-                    WeatherInfo(
-                      temperature: currentForecast.temperature,
-                      condition: currentForecast.condition,
-                    ),
-                    SizedBox(height: size.height * 0.08),
-                    SizedBox(
-                      height: 50.0,
-                      width: 150.0,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: categories.length,
-                        itemBuilder: (context, index) => GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              selectedIndex = index;
-                            });
-                          },
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 10.0),
-                            child: Column(
-                              children: [
-                                Text(
-                                  categories[index],
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: textColor,
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(top: 5.0),
-                                  decoration: BoxDecoration(
-                                    color: selectedIndex == index
-                                        ? textColor
-                                        : Colors.transparent,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  width: 8.0,
-                                  height: 8.0,
-                                ),
-                              ],
+                              onTap: () => chooseCity(context),
+                              icon: menuIcon,
                             ),
                           ),
-                        ),
+                        ],
                       ),
-                    ),
-                    if (selectedIndex == 0)
-                      SizedBox(
-                        height: size.height * 0.25,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: numberOfForecasts,
-                          itemBuilder: (context, index) => HourlyForecastWidget(
-                            hourlyForecastHour: hourlyForecastList[index].hour,
-                            hourlyForecastConditionIcon:
-                                hourlyForecastList[index].conditionIcon,
-                            hourlyForecastTemperature:
-                                hourlyForecastList[index].temperature,
+                      Column(
+                        children: <Widget>[
+                          LocationInfo(
+                            cityName: widget.cityName,
+                            countryName: widget.countryName,
+                            currentTime: currentForecast.time,
+                            weatherType: widget.weatherType,
                           ),
-                        ),
-                      ),
-                    if (selectedIndex == 1)
-                      SizedBox(
-                        height: size.height * 0.25,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: numberOfForecasts,
-                          itemBuilder: (context, index) => DailyForecastWidget(
-                            dailyForecastDate: dailyForecastList[index].date,
-                            dailyForecastConditionIcon:
-                                dailyForecastList[index].conditionIcon,
-                            dailyForecastCondition:
-                                dailyForecastList[index].condition,
+                          SvgPicture.asset(
+                            currentForecast.conditionIcon ?? noConditionIcon,
+                            height: size.height * 0.3,
                           ),
-                        ),
+                          WeatherInfo(
+                            temperature: currentForecast.temperature,
+                            condition: currentForecast.condition,
+                          ),
+                          SizedBox(height: size.height * 0.08),
+                          SizedBox(
+                            height: 75.0,
+                            width: 150.0,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: categories.length,
+                              itemBuilder: (context, index) => GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    selectedIndex = index;
+                                  });
+                                },
+                                child: Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 10.0),
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        categories[index],
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: textColor,
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(top: 5.0),
+                                        decoration: BoxDecoration(
+                                          color: selectedIndex == index
+                                              ? textColor
+                                              : Colors.transparent,
+                                          shape: BoxShape.circle,
+                                        ),
+                                        width: 8.0,
+                                        height: 8.0,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          if (selectedIndex == 0)
+                            SizedBox(
+                              height: size.height * 0.25,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: numberOfForecasts,
+                                itemBuilder: (context, index) =>
+                                    HourlyForecastWidget(
+                                  hourlyForecastHour:
+                                      hourlyForecastList[index].hour,
+                                  hourlyForecastConditionIcon:
+                                      hourlyForecastList[index].conditionIcon,
+                                  hourlyForecastTemperature:
+                                      hourlyForecastList[index].temperature,
+                                ),
+                              ),
+                            ),
+                          if (selectedIndex == 1)
+                            SizedBox(
+                              height: size.height * 0.25,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: numberOfForecasts,
+                                itemBuilder: (context, index) =>
+                                    DailyForecastWidget(
+                                  dailyForecastDate:
+                                      dailyForecastList[index].date,
+                                  dailyForecastConditionIcon:
+                                      dailyForecastList[index].conditionIcon,
+                                  dailyForecastCondition:
+                                      dailyForecastList[index].condition,
+                                ),
+                              ),
+                            ),
+                        ],
                       ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+                    ],
+                  ),
+                )
+              : LoadingScreen().buildLoadingScreen(),
         ),
       ),
     );

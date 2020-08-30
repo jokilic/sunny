@@ -16,6 +16,7 @@ It uses [yr.no](https://www.yr.no) as the weather provider.
 - [ ] Remove *height* and *width* tags from each SVG
 - [ ] Implement the **InfoScreen**
 - [ ] Long press on the menu icon brings you to the **InfoScreen**
+- [x] Add an indicator of waiting while waiting for weather via location
 - [x] Add a GPS icon on the top left to check for weather via location
 - [x] Remove small GPS icon above city name if the user has entered a custom city
 - [x] Add an indicator of waiting while fetching the custom weather

@@ -23,6 +23,7 @@ class CityTextField extends StatelessWidget {
           fontWeight: FontWeight.w600,
         ),
         textAlign: TextAlign.center,
+        textCapitalization: TextCapitalization.words,
         decoration: InputDecoration(
           border: InputBorder.none,
           focusedBorder: buildInputBorder(),

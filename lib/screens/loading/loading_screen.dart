@@ -32,6 +32,38 @@ class LoadingScreen extends StatefulWidget {
     );
   }
 
+  Widget buildLoadingScreen() {
+    return Container(
+      height: double.infinity,
+      width: double.infinity,
+      color: currentColor,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SvgPicture.asset(
+            mainIcon,
+            height: 125.0,
+          ),
+          SizedBox(height: 50.0),
+          Text(
+            waitString,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: textColor,
+              fontSize: 30.0,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          SizedBox(height: 50.0),
+          Loading(
+            indicator: BallPulseIndicator(),
+            color: textColor,
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   _LoadingScreenState createState() => _LoadingScreenState();
 }
@@ -46,35 +78,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        color: currentColor,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SvgPicture.asset(
-              mainIcon,
-              height: 125.0,
-            ),
-            SizedBox(height: 50.0),
-            Text(
-              waitString,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: textColor,
-                fontSize: 30.0,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            SizedBox(height: 50.0),
-            Loading(
-              indicator: BallPulseIndicator(),
-              color: textColor,
-            ),
-          ],
-        ),
-      ),
+      body: widget.buildLoadingScreen(),
     );
   }
 }
