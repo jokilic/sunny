@@ -3,16 +3,19 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../colors.dart';
 import '../../../strings.dart';
+import '../weather_screen.dart';
 
 class LocationInfo extends StatelessWidget {
   final String cityName;
   final String countryName;
   final String currentTime;
+  final WeatherType weatherType;
 
   LocationInfo({
     this.cityName,
     this.countryName,
     this.currentTime,
+    this.weatherType,
   });
 
   @override
@@ -23,11 +26,12 @@ class LocationInfo extends StatelessWidget {
       width: size.width * 0.75,
       child: Column(
         children: <Widget>[
-          SvgPicture.asset(
-            gpsIcon,
-            color: textColor,
-            height: 26.0,
-          ),
+          if (weatherType == WeatherType.gps)
+            SvgPicture.asset(
+              gpsIcon,
+              color: textColor,
+              height: 26.0,
+            ),
           SizedBox(height: 8.0),
           Container(
             child: Text(

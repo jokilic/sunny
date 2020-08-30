@@ -8,13 +8,19 @@ import '../../models/current_forecast.dart';
 import '../../models/hourly_forecast.dart';
 import '../../models/daily_forecast.dart';
 import '../../components/background_image.dart';
-import './components/city_button.dart';
+import './components/top_button.dart';
 import './components/location_info.dart';
 import './components/weather_info.dart';
 import './components/conditions.dart';
 import './components/hourly_forecast_widget.dart';
 import './components/daily_forecast_widget.dart';
 import './components/choose_city.dart';
+import '../loading/loading_screen.dart';
+
+enum WeatherType {
+  gps,
+  custom,
+}
 
 class WeatherScreen extends StatefulWidget {
   static const routeName = '/weather-screen';
@@ -23,12 +29,14 @@ class WeatherScreen extends StatefulWidget {
   final timezoneData;
   final String cityName;
   final String countryName;
+  final WeatherType weatherType;
 
   WeatherScreen({
     this.locationWeather,
     this.timezoneData,
     this.cityName,
     this.countryName,
+    this.weatherType,
   });
 
   @override
@@ -40,6 +48,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
   int numberOfForecasts = 12;
   List<String> categories = ['Today', 'Week'];
   int selectedIndex = 0;
+
   CurrentForecast currentForecast = CurrentForecast();
   List<HourlyForecast> hourlyForecastList = [];
   List<DailyForecast> dailyForecastList = [];
@@ -116,7 +125,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
     String conditionIcon;
     String fullTime;
 
-    for (int i = 0; i < 85; i++) {
+    for (int i = 0; i < 80; i++) {
       fullTime = weatherData['properties']['timeseries'][i]['time'];
 
       hour = int.parse(fullTime.substring(11, 13));
@@ -161,8 +170,28 @@ class _WeatherScreenState extends State<WeatherScreen> {
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                CityButton(
-                  () => chooseCity(context),
+                SizedBox(height: 16.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    widget.weatherType == WeatherType.custom
+                        ? SizedBox(
+                            width: 85.0,
+                            child: TopButton(
+                              onTap: () =>
+                                  LoadingScreen().getLocationData(context),
+                              icon: gpsIcon,
+                            ),
+                          )
+                        : SizedBox(width: 85.0),
+                    SizedBox(
+                      width: 75.0,
+                      child: TopButton(
+                        onTap: () => chooseCity(context),
+                        icon: menuIcon,
+                      ),
+                    ),
+                  ],
                 ),
                 Column(
                   children: <Widget>[
@@ -170,6 +199,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       cityName: widget.cityName,
                       countryName: widget.countryName,
                       currentTime: currentForecast.time,
+                      weatherType: widget.weatherType,
                     ),
                     SvgPicture.asset(
                       currentForecast.conditionIcon ?? noConditionIcon,

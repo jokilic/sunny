@@ -8,14 +8,16 @@ It uses [yr.no](https://www.yr.no) as the weather provider.
 ## Things I still want to do:
 
 - [ ] Implement some error handling when invalid city name is entered
+- [ ] Add an icon, splash screen, etc.
 - [ ] Use Geolocator v6 & Geocoding plugins
 - [ ] Refactor code as much as you can
 - [ ] Make the UI responsive as much as you can
 - [ ] Make the **LoadingScreen** a bit nicer looking
 - [ ] Remove *height* and *width* tags from each SVG
-- [ ] Add a GPS icon on the top left to check for weather via location
 - [ ] Implement the **InfoScreen**
 - [ ] Long press on the menu icon brings you to the **InfoScreen**
+- [x] Add a GPS icon on the top left to check for weather via location
+- [x] Remove small GPS icon above city name if the user has entered a custom city
 - [x] Add an indicator of waiting while fetching the custom weather
 - [x] Implement a modal view to enter a new city
 - [x] Add Weekly forecast and a way to scroll between 'Today' and 'Week'

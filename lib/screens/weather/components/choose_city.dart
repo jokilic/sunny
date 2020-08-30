@@ -19,8 +19,6 @@ void chooseCity(BuildContext context) {
   Size size = MediaQuery.of(context).size;
 
   void getWeather(chosenCity) async {
-    print(chosenCity);
-
     fetchingWeather = Fetching.yes;
 
     var weatherData = await Weather().getCustomWeather(chosenCity);
@@ -36,6 +34,7 @@ void chooseCity(BuildContext context) {
             timezoneData: timezoneData,
             cityName: locationName[0],
             countryName: locationName[1],
+            weatherType: WeatherType.custom,
           );
         },
       ),

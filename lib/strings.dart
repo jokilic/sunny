@@ -9,16 +9,19 @@ const String weatherApi =
 const String timeZoneDbApiRoot = 'http://api.timezonedb.com/v2.1/get-time-zone';
 const String timeZoneDbApiKey = 'H7MPWBEEZJLH';
 
+// Icons
 const String conditionIconRootAddress = 'assets/icons/conditions/';
 const String noConditionIcon = 'assets/icons/conditions/noweather.svg';
 const String gpsIcon = 'assets/icons/gps.svg';
-const String icon = 'assets/icons/icon.svg';
+const String menuIcon = 'assets/icons/menu.svg';
+const String mainIcon = 'assets/icons/icon.svg';
+
+// Strings
 const String waitString = 'Just a moment...';
 const String searchString = 'Some other city?';
 const String searchTextFieldString = 'e.g. \'Zagreb, Croatia\'';
 const String searchButtonString = 'Get weather';
 
-// No weather strings
 const String noCity = 'City unavailable';
 const String noTime = 'Time unavailable';
 const String noTemperature = 'x';
