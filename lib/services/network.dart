@@ -14,7 +14,7 @@ class Network {
 
       return jsonDecode(data);
     } else {
-      print(response.statusCode);
+      print('Sunny: Network Error - ${response.statusCode}');
     }
   }
 }

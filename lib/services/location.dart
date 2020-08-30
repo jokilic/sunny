@@ -24,7 +24,7 @@ class Location {
       cityName = locationName[0].locality;
       countryName = locationName[0].country;
     } catch (e) {
-      print('Sunny: getLocation() - Error: $e');
+      print('Sunny: Location Error - getLocation() - $e');
     }
   }
 
@@ -46,7 +46,7 @@ class Location {
       cityName = locationName[0].locality;
       countryName = locationName[0].country;
     } catch (e) {
-      print('Sunny: getCoordinates() - Error: $e');
+      print('Sunny: Location Error - getCoordinates() - $e');
     }
   }
 }

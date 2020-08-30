@@ -18,7 +18,7 @@ class TopButton extends StatelessWidget {
     return Container(
       width: size.width,
       height: size.height * 0.06,
-      margin: EdgeInsets.symmetric(horizontal: 24.0),
+      margin: EdgeInsets.symmetric(horizontal: 20.0),
       child: GestureDetector(
         onTap: onTap,
         child: SvgPicture.asset(
