@@ -15,7 +15,7 @@ const String gpsIcon = 'assets/icons/gps.svg';
 const String icon = 'assets/icons/icon.svg';
 const String waitString = 'Just a moment...';
 const String searchString = 'Some other city?';
-const String searchTextFieldString = 'Enter city here';
+const String searchTextFieldString = 'e.g. \'Zagreb, Croatia\'';
 const String searchButtonString = 'Get weather';
 
 // No weather strings
