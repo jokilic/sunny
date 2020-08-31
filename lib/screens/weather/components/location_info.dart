@@ -30,7 +30,7 @@ class LocationInfo extends StatelessWidget {
             SvgPicture.asset(
               gpsIcon,
               color: textColor,
-              height: 26.0,
+              height: 24.0,
             ),
           SizedBox(height: 8.0),
           Container(

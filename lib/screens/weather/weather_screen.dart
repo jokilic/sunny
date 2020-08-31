@@ -189,13 +189,13 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       children: [
                         widget.weatherType == WeatherType.custom
                             ? SizedBox(
-                                width: 75.0,
+                                width: 68.0,
                                 child: TopButton(
                                   onTap: () => fetchLocationWeather(),
                                   icon: gpsIcon,
                                 ),
                               )
-                            : SizedBox(width: 75.0),
+                            : SizedBox(width: 68.0),
                         SizedBox(
                           width: 65.0,
                           child: TopButton(

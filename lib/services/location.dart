@@ -1,6 +1,8 @@
 import 'package:geolocator/geolocator.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geocoding_platform_interface/geocoding_platform_interface.dart';
 
-class Location {
+class LocationSunny {
   double latitude;
   double longitude;
   String cityName;
@@ -8,14 +10,13 @@ class Location {
 
   Future<void> getLocation() async {
     try {
-      Position position = await Geolocator()
-          .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+      Position position =
+          await getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
 
       latitude = position.latitude;
       longitude = position.longitude;
 
-      List<Placemark> locationName =
-          await Geolocator().placemarkFromCoordinates(
+      List<Placemark> locationName = await placemarkFromCoordinates(
         latitude,
         longitude,
         // localeIdentifier: 'hr_HR',
@@ -30,14 +31,12 @@ class Location {
 
   Future<void> getCoordinates(chosenCity) async {
     try {
-      List<Placemark> coordinates =
-          await Geolocator().placemarkFromAddress(chosenCity);
+      List<Location> coordinates = await locationFromAddress(chosenCity);
 
-      latitude = coordinates[0].position.latitude;
-      longitude = coordinates[0].position.longitude;
+      latitude = coordinates[0].latitude;
+      longitude = coordinates[0].longitude;
 
-      List<Placemark> locationName =
-          await Geolocator().placemarkFromCoordinates(
+      List<Placemark> locationName = await placemarkFromCoordinates(
         latitude,
         longitude,
         // localeIdentifier: 'hr_HR',

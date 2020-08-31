@@ -3,18 +3,18 @@
 Sunny is a simple weather app made in **Flutter**.
 It uses [yr.no](https://www.yr.no) as the weather provider.
 
-### The app is a work in progress and it's here just to show my friend the progress I'm making.
+### The app is a work in progress.
 
 ## Things I still want to do:
 
 - [ ] Implement some error handling when invalid city name is entered
-- [ ] Use Geolocator v6 & Geocoding plugins
 - [ ] Refactor code as much as you can
 - [ ] Make the UI responsive as much as you can
+- [ ] Find, modify and implement background images for each weather condition
 - [ ] Make the **LoadingScreen** a bit nicer looking
-- [ ] Remove *height* and *width* tags from each SVG
 - [ ] Implement the **InfoScreen**
-- [ ] Long press on the menu icon brings you to the **InfoScreen**
+- [x] Use Geolocator v6 & Geocoding plugins
+- [x] Remove *height* and *width* tags from each SVG
 - [x] Add an icon, splash screen, etc.
 - [x] Add an indicator of waiting while waiting for weather via location
 - [x] Add a GPS icon on the top left to check for weather via location

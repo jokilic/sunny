@@ -1,4 +1,4 @@
-package com.example.sunny
+package com.josipkilic.sunny
 
 import io.flutter.embedding.android.FlutterActivity
 

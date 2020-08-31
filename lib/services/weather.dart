@@ -3,7 +3,7 @@ import 'network.dart';
 import '../strings.dart';
 
 class Weather {
-  Location location = Location();
+  LocationSunny location = LocationSunny();
 
   Future<dynamic> getLocationWeather() async {
     await location.getLocation();
