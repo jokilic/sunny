@@ -266,7 +266,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                         ),
                         if (selectedIndex == 0)
                           SizedBox(
-                            height: size.height * 0.25,
+                            height: size.height * 0.3,
                             child: ListView.builder(
                               scrollDirection: Axis.horizontal,
                               itemCount: numberOfForecasts,
@@ -283,7 +283,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           ),
                         if (selectedIndex == 1)
                           SizedBox(
-                            height: size.height * 0.25,
+                            height: size.height * 0.3,
                             child: ListView.builder(
                               scrollDirection: Axis.horizontal,
                               itemCount: numberOfForecasts,

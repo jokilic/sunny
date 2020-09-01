@@ -20,7 +20,8 @@ const String mainIcon = 'assets/icons/icon.svg';
 const String waitString = 'Just a moment...';
 const String searchString = 'Some other city?';
 const String searchTextFieldString = 'e.g. \'Zagreb, Croatia\'';
-const String searchButtonString = 'Get weather';
+const String searchCityError =
+    'Requested city not found :(\nSearch for something else.';
 
 const String noCity = 'City unavailable';
 const String noTime = 'Time unavailable';

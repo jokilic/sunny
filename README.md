@@ -7,12 +7,12 @@ It uses [yr.no](https://www.yr.no) as the weather provider.
 
 ## Things I still want to do:
 
-- [ ] Implement some error handling when invalid city name is entered
 - [ ] Refactor code as much as you can
 - [ ] Make the UI responsive as much as you can
 - [ ] Find, modify and implement background images for each weather condition
 - [ ] Make the **LoadingScreen** a bit nicer looking
 - [ ] Implement the **InfoScreen**
+- [x] Implement some error handling when invalid city name is entered
 - [x] Use Geolocator v6 & Geocoding plugins
 - [x] Remove *height* and *width* tags from each SVG
 - [x] Add an icon, splash screen, etc.
