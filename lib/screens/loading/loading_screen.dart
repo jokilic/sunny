@@ -5,6 +5,7 @@ import 'package:loading/indicator/ball_pulse_indicator.dart';
 
 import '../../colors.dart';
 import '../../strings.dart';
+import '../../components/gradient_background.dart';
 import '../weather/weather_screen.dart';
 import '../../services/weather.dart';
 
@@ -33,10 +34,8 @@ class LoadingScreen extends StatefulWidget {
   }
 
   Widget buildLoadingScreen() {
-    return Container(
-      height: double.infinity,
-      width: double.infinity,
-      color: currentColor,
+    return GradientBackground(
+      colors: primaryColors,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

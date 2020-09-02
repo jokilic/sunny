@@ -22,7 +22,7 @@ class Sunny extends StatelessWidget {
       },
       title: appName,
       theme: ThemeData(
-        primaryColor: currentColor,
+        primaryColor: primaryColor,
         canvasColor: Colors.transparent,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         fontFamily: 'Montserrat',

@@ -66,7 +66,12 @@ void chooseCity(BuildContext context) {
           height: size.height * modalHeightPercentage,
           padding: EdgeInsets.only(top: 36.0, bottom: 24.0),
           decoration: BoxDecoration(
-            color: backgroundColor,
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              stops: [0.0, 1.0],
+              colors: modalColors,
+            ),
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(24.0),
               topRight: Radius.circular(24.0),

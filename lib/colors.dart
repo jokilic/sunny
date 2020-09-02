@@ -1,19 +1,50 @@
 import 'package:flutter/painting.dart';
 
-Color currentColor = backgroundColor;
+List<Color> currentColors = primaryColors;
 
-const Color backgroundColor = Color(0xFF263238);
+const Color primaryColor = Color(0xFF414288);
 const Color textColor = Color(0xFFFFFFFF);
 
-const Color dayColor = Color(0xFF0D47A1);
-const Color nightColor = Color(0xFF100F3A);
-const Color rainColor = Color(0xFF928EFF);
-const Color snowColor = Color(0xFFCFD8DC);
-const Color cloudyColor = Color(0xFF039BE5);
-const Color fogColor = Color(0xFF90CAF9);
-const Color fairDayColor = Color(0xFF009688);
-const Color fairNightColor = Color(0xFF651FFF);
-const Color sleetColor = Color(0xFF80DEEA);
-const Color lightRainColor = Color(0xFF00B8D4);
-const Color lightSnowColor = Color(0xFFEEEEEE);
-const Color heavyRainColor = Color(0xFFAA00FF);
+// Gradients
+const List<Color> primaryColors = [
+  Color(0xFF414288),
+  Color(0xFF5FB49C),
+];
+
+const List<Color> modalColors = [
+  Color(0xFF7871AA),
+  Color(0xFF4E5283),
+];
+
+const List<Color> dayColors = [
+  Color(0xFFF4D35E),
+  Color(0xFF7BB2D9),
+];
+const List<Color> nightColors = [
+  Color(0xFF462255),
+  Color(0xFF313B72),
+];
+const List<Color> fairColors = [
+  Color(0xFF62A87C),
+  Color(0xFF7EE081),
+];
+const List<Color> cloudyColors = [
+  Color(0xFF9A8C98),
+  Color(0xFFC9ADA7),
+];
+const List<Color> fogColors = [
+  Color(0xFFA2C7E5),
+  Color(0xFF637074),
+];
+const List<Color> rainColors = [
+  Color(0xFF839D9A),
+  Color(0xFF7BB2D9),
+];
+const List<Color> sleetColors = [
+  Color(0xFF285943),
+  Color(0xFF61C9A8),
+];
+const List<Color> snowColors = [
+  Color(0xFFE49273),
+  Color(0xFFA37A74),
+];
