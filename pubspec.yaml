@@ -28,7 +28,7 @@ flutter_icons:
   android: true
   ios: true
   image_path: 'assets/icon.png'
-  adaptive_icon_background: '#263238'
+  adaptive_icon_background: '#414288'
   adaptive_icon_foreground: 'assets/icon.png'
 
 flutter:
@@ -37,7 +37,6 @@ flutter:
   assets:
     - assets/icons/
     - assets/icons/conditions/
-    - assets/images/
 
   fonts:
     - family: Montserrat

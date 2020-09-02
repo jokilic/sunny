@@ -9,9 +9,10 @@ It uses [yr.no](https://www.yr.no) as the weather provider.
 
 - [ ] Refactor code as much as you can
 - [ ] Make the UI responsive as much as you can
-- [ ] Find, modify and implement background images for each weather condition
 - [ ] Make the **LoadingScreen** a bit nicer looking
 - [ ] Implement the **InfoScreen**
+- [x] Test all weather variations and background colors
+- [x] Create gradients for each weather condition
 - [x] Implement some error handling when invalid city name is entered
 - [x] Use Geolocator v6 & Geocoding plugins
 - [x] Remove *height* and *width* tags from each SVG
