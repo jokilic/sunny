@@ -18,6 +18,8 @@ dependencies:
   flutter_svg: ^0.18.1
   loading: ^1.0.2
   intl: ^0.16.1
+  url_launcher: ^5.5.2
+  audioplayers: ^0.16.0
 
 dev_dependencies:
   flutter_test:
@@ -35,6 +37,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/
     - assets/icons/
     - assets/icons/conditions/
 

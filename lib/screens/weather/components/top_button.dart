@@ -5,10 +5,12 @@ import 'package:sunny/colors.dart';
 class TopButton extends StatelessWidget {
   final Function onTap;
   final String icon;
+  final EdgeInsetsGeometry margin;
 
   TopButton({
     this.onTap,
     this.icon,
+    this.margin,
   });
 
   @override
@@ -18,7 +20,7 @@ class TopButton extends StatelessWidget {
     return Container(
       width: size.width,
       height: size.height * 0.06,
-      margin: EdgeInsets.symmetric(horizontal: 20.0),
+      margin: margin,
       child: GestureDetector(
         onTap: onTap,
         child: SvgPicture.asset(

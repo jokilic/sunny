@@ -12,8 +12,8 @@ It uses [yr.no](https://www.yr.no) as the weather provider.
 - [ ] Create / download other weather icons
 - [ ] Refactor code as much as you can
 - [ ] Make the UI responsive as much as you can
-- [ ] Make the **LoadingScreen** a bit nicer looking
-- [ ] Implement the **InfoScreen**
+- [x] Implement the **InfoScreen**
+- [x] Make the **LoadingScreen** a bit nicer looking
 - [x] Recreate weather icons that have stroke instead of fill
 - [x] Test all weather variations and background colors
 - [x] Create gradients for each weather condition

@@ -12,6 +12,7 @@ const String conditionIconRootAddress = 'assets/icons/conditions/';
 const String noConditionIcon = 'assets/icons/conditions/noweather.svg';
 const String sunIcon = 'assets/icons/sun.svg';
 const String gpsIcon = 'assets/icons/gps.svg';
+const String searchIcon = 'assets/icons/search.svg';
 const String menuIcon = 'assets/icons/menu.svg';
 
 // Strings
@@ -28,6 +29,54 @@ const String noTime = 'Time unavailable';
 const String noTemperature = 'x';
 const String noCondition = 'Condition unavailable';
 const String noForecastHour = 'Hour unavailable';
+
+// Info section
+const String aboutSunnyTitleString = 'About Sunny';
+const String aboutSunnyFirstString = ' is a simple application for ';
+const String aboutSunnySecondString = 'checking the weather';
+const String aboutSunnyThirdString = '.\n';
+const String aboutSunnyFourthString = 'It\'s made with ';
+const String aboutSunnyFifthString = 'Flutter';
+const String aboutSunnySixthString = '.';
+const String aboutSunnySeventhString = '\n\nWant to learn more about ';
+const String aboutSunnyEighthString = '?\nVisit Flutter\'s ';
+const String aboutSunnyNinthString = 'official website';
+const String aboutSunnyTenthString = ' and get started.';
+
+const String weatherProviderTitleString = 'Weather provider';
+const String weatherProviderFirstString = 'Weather is fetched from ';
+const String weatherProviderSecondString = 'Yr.no';
+const String weatherProviderThirdString = '.\n\nThe ';
+const String weatherProviderFourthString = 'Norwegian Meteorological Institute';
+const String weatherProviderFifthString =
+    ' was kind enough to offer the weather data for free.\nWithout it, this app wouldn\'t be possible.';
+
+const String whoTitleString = 'Who am I?';
+const String whoFirstString = 'My name is ';
+const String whoSecondString = 'Josip';
+const String whoThirdString = ' and I come from ';
+const String whoFourthString = 'Croatia';
+const String whoFifthString = '.\n\n';
+const String whoSixthString =
+    'I love creating mobile applications and I love development in general.\nI have decided to create Sunny in order to practice my programming skills.';
+const String whoSeventhString =
+    'I know there are millions of weather apps out there, but I wanted to create one in order to practice asynchronous programming, draw some vector icons and to work more with Flutter.';
+
+const String aboutMeTitleString = 'Više o meni';
+const String aboutMeWebsiteString = 'josipkilic.com';
+const String aboutMeGitHubString = 'GitHub';
+const String aboutMeEmailString = 'E-Mail';
+
+const String thanksString = 'Thank you for using Sunny.';
+
+// Links
+const String flutterWebsite = 'https://flutter.dev';
+const String yrNoWebsite = 'https://www.yr.no';
+const String josipGithubWebsite = 'https://github.com/jokilic';
+const String josipKilicWebsite = 'https://josipkilic.com';
+const String josipKilicEmail = 'mailto:neksuses@gmail.com';
+
+const String josipImage = 'assets/josip.jpg';
 
 // Weather statuses (conditions.dart)
 const String clearsky_day = 'Sunny';

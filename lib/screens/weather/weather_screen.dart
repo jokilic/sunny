@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 
 import '../../colors.dart';
 import '../../strings.dart';
+import '../info/info_screen.dart';
 import '../../models/current_forecast.dart';
 import '../../models/hourly_forecast.dart';
 import '../../models/daily_forecast.dart';
@@ -193,19 +194,36 @@ class _WeatherScreenState extends State<WeatherScreen> {
                         children: [
                           widget.weatherType == WeatherType.custom
                               ? SizedBox(
-                                  width: 68.0,
+                                  width: 45.0,
                                   child: TopButton(
-                                    onTap: () => fetchLocationWeather(),
-                                    icon: gpsIcon,
-                                  ),
+                                      onTap: () => fetchLocationWeather(),
+                                      icon: gpsIcon,
+                                      margin: EdgeInsets.only(left: 20.0)),
                                 )
-                              : SizedBox(width: 68.0),
-                          SizedBox(
-                            width: 65.0,
-                            child: TopButton(
-                              onTap: () => chooseCity(context),
-                              icon: menuIcon,
-                            ),
+                              : SizedBox(width: 45.0),
+                          Row(
+                            children: [
+                              SizedBox(
+                                width: 42.0,
+                                child: TopButton(
+                                  onTap: () => chooseCity(context),
+                                  icon: searchIcon,
+                                  margin: EdgeInsets.only(right: 20.0),
+                                ),
+                              ),
+                              SizedBox(width: 10.0),
+                              SizedBox(
+                                width: 42.0,
+                                child: TopButton(
+                                  onTap: () => Navigator.pushNamed(
+                                    context,
+                                    InfoScreen.routeName,
+                                  ),
+                                  icon: menuIcon,
+                                  margin: EdgeInsets.only(right: 20.0),
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
