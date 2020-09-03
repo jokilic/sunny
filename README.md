@@ -1,9 +1,13 @@
+![Header](https://raw.githubusercontent.com/jokilic/sunny/master/screenshots/header.png)
+
 # Sunny
 
 Sunny is a simple weather app made in **Flutter**.
 It uses [yr.no](https://www.yr.no) as the weather provider.
 
-### The app is a work in progress.
+### Sunny can be downloaded from [HERE](https://play.google.com/store/apps/details?id=com.josipkilic.sunny).
+
+![Multi](https://raw.githubusercontent.com/jokilic/sunny/master/screenshots/multi.png)
 
 ## Things I still want to do:
 
@@ -36,6 +40,3 @@ It uses [yr.no](https://www.yr.no) as the weather provider.
 - [x] Replace hardcoded text with variables
 - [x] Create other weather icons from the downloaded ones
 - [x] Rename icons to the required names (e.g. **clearsky_day**)
-
-### Gonna post some screenshots when I'm happy enough with the app and the UI.
-### Gonna put the app on the Play Store when I'm generally happy with the app and it could serve other people.

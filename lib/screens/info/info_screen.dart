@@ -22,11 +22,11 @@ class InfoScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 80.0),
+              SizedBox(height: 100.0),
               HeroSection(
                 textColor: textColor,
               ),
-              SizedBox(height: 24.0),
+              SizedBox(height: 36.0),
               TitleWidget(aboutSunnyTitleString),
               StandardText(
                 RichText(
