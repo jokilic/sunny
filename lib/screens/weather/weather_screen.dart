@@ -170,6 +170,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
     setState(() {
       fetching = Fetching.yes;
       LoadingScreen().getLocationData(context);
+      currentColors = primaryColors;
     });
   }
 

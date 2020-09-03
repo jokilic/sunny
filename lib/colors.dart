@@ -3,12 +3,13 @@ import 'package:flutter/painting.dart';
 List<Color> currentColors = primaryColors;
 
 const Color primaryColor = Color(0xFF414288);
+const Color secondaryColor = Color(0xFF212144);
 const Color textColor = Color(0xFFFFFFFF);
 
 // Gradients
 const List<Color> primaryColors = [
-  Color(0xFF414288),
-  Color(0xFF5FB49C),
+  secondaryColor,
+  primaryColor,
 ];
 
 const List<Color> modalColors = [

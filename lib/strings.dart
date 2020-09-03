@@ -10,12 +10,14 @@ const String timeZoneDbApiKey = 'H7MPWBEEZJLH';
 // Icons
 const String conditionIconRootAddress = 'assets/icons/conditions/';
 const String noConditionIcon = 'assets/icons/conditions/noweather.svg';
+const String sunIcon = 'assets/icons/sun.svg';
 const String gpsIcon = 'assets/icons/gps.svg';
 const String menuIcon = 'assets/icons/menu.svg';
-const String mainIcon = 'assets/icons/icon.svg';
 
 // Strings
-const String waitString = 'Just a moment...';
+const String yrNoFirstString = 'Powered by ';
+const String yrNoSecondString = 'Yr.no';
+const String waitString = 'Just a moment';
 const String searchString = 'Some other city?';
 const String searchTextFieldString = 'e.g. \'Zagreb, Croatia\'';
 const String searchCityError =

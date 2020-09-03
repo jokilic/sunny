@@ -39,24 +39,65 @@ class LoadingScreen extends StatefulWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SvgPicture.asset(
-            mainIcon,
-            height: 125.0,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    appName.toUpperCase(),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: secondaryColor,
+                      fontSize: 56.0,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      text: yrNoFirstString,
+                      style: TextStyle(
+                        color: secondaryColor,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: yrNoSecondString,
+                          style: TextStyle(
+                            color: secondaryColor,
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(width: 8.0),
+              SvgPicture.asset(
+                sunIcon,
+                color: secondaryColor,
+                height: 110.0,
+              ),
+            ],
           ),
           SizedBox(height: 50.0),
           Text(
             waitString,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: textColor,
-              fontSize: 30.0,
-              fontWeight: FontWeight.w600,
+              color: secondaryColor,
+              fontSize: 24.0,
+              fontWeight: FontWeight.w700,
             ),
           ),
-          SizedBox(height: 50.0),
+          SizedBox(height: 16.0),
           Loading(
             indicator: BallPulseIndicator(),
-            color: textColor,
+            color: secondaryColor,
           ),
         ],
       ),
