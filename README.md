@@ -2,8 +2,15 @@
 
 # Sunny
 
-Sunny is a simple weather app made in **Flutter**.
-It uses [yr.no](https://www.yr.no) as the weather provider.
+**Sunny is a simple app made in Flutter.**
+
+* It uses [yr.no](https://www.yr.no) as the weather provider
+* It shows the current weather, hourly weather and daily weather
+* It offers the user to enter any desired city manually
+
+
+The Norwegian Meteorological Institute was kind enough to offer the weather data for free.
+Without it, this app wouldn't be possible.
 
 ### Sunny can be downloaded from [HERE](https://play.google.com/store/apps/details?id=com.josipkilic.sunny).
 
