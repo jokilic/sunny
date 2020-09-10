@@ -36,7 +36,7 @@ void chooseCity(BuildContext context) {
     var timezoneData = await Weather().getCustomTimezone(chosenCity);
 
     if (locationError == LocationError.no)
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) {

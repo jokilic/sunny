@@ -17,7 +17,7 @@ class LoadingScreen extends StatefulWidget {
     var locationName = await Weather().getLocationName();
     var timezoneData = await Weather().getLocationTimezone();
 
-    Navigator.push(
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute(
         builder: (context) {

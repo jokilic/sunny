@@ -1,13 +1,15 @@
 ![Header](https://raw.githubusercontent.com/jokilic/sunny/master/screenshots/header.png)
 
-# Sunny
+# Sunny ☀️
 
-**Sunny is a simple app made in Flutter.**
+☀️ **Sunny** is a simple app made in Flutter. 👨‍💻
 
-* It uses [yr.no](https://www.yr.no) as the weather provider
-* It shows the current weather, hourly weather and daily weather
-* It offers the user to enter any desired city manually
-
+* It shows multiple weather types
+   * Current weather 🌊
+   * Hourly weather 🍃
+   * Daily weather 🌪️
+* It offers the user to enter any desired city manually 🌎
+* It uses yr.no as the weather provider 🇳🇴
 
 The Norwegian Meteorological Institute was kind enough to offer the weather data for free.
 Without it, this app wouldn't be possible.
@@ -18,11 +20,12 @@ Without it, this app wouldn't be possible.
 
 ## Things I still want to do:
 
-- [ ] Build a production version of the app and publish on the Play store
-- [ ] Create screenshots for the Play store
 - [ ] Create / download other weather icons
 - [ ] Refactor code as much as you can
 - [ ] Make the UI responsive as much as you can
+- [x] Make it impossible to go back to the LoadingScreen after the weather has been loaded
+- [x] Build a production version of the app and publish on the Play store
+- [x] Create screenshots for the Play store
 - [x] Implement the **InfoScreen**
 - [x] Make the **LoadingScreen** a bit nicer looking
 - [x] Recreate weather icons that have stroke instead of fill
