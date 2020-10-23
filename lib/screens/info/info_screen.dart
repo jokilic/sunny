@@ -19,6 +19,7 @@ class InfoScreen extends StatelessWidget {
       colors: currentColors,
       child: Scaffold(
         body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

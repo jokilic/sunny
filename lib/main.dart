@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'colors.dart';
-import 'strings.dart';
-
+import './colors.dart';
+import './strings.dart';
 import './screens/loading/loading_screen.dart';
 import './screens/weather/weather_screen.dart';
 import './screens/info/info_screen.dart';

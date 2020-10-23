@@ -78,6 +78,7 @@ void chooseCity(BuildContext context) {
             ),
           ),
           child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

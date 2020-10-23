@@ -186,6 +186,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
         body: SafeArea(
           child: fetching == Fetching.no
               ? SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
                   child: Column(
                     children: <Widget>[
                       SizedBox(height: 16.0),
@@ -249,6 +250,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                             height: 60.0,
                             child: ListView.builder(
                               scrollDirection: Axis.horizontal,
+                              physics: BouncingScrollPhysics(),
                               itemCount: categories.length,
                               itemBuilder: (context, index) => GestureDetector(
                                 onTap: () {
@@ -292,6 +294,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                               height: size.height * 0.3,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
+                                physics: BouncingScrollPhysics(),
                                 itemCount: numberOfForecasts,
                                 itemBuilder: (context, index) =>
                                     HourlyForecastWidget(
@@ -309,6 +312,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                               height: size.height * 0.3,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
+                                physics: BouncingScrollPhysics(),
                                 itemCount: numberOfForecasts,
                                 itemBuilder: (context, index) =>
                                     DailyForecastWidget(

@@ -23,6 +23,7 @@ Without it, this app wouldn't be possible.
 - [ ] Create / download other weather icons
 - [ ] Refactor code as much as you can
 - [ ] Make the UI responsive as much as you can
+- [x] Update scroll animations to use BouncingScrollPhysics
 - [x] Make it impossible to go back to the LoadingScreen after the weather has been loaded
 - [x] Build a production version of the app and publish on the Play store
 - [x] Create screenshots for the Play store
