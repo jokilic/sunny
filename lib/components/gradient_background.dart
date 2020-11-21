@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class GradientBackground extends StatelessWidget {
-  final Widget child;
-  final List<Color> colors;
+  final Widget? child;
+  final List<Color>? colors;
 
   GradientBackground({
     this.child,
@@ -18,7 +18,7 @@ class GradientBackground extends StatelessWidget {
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
           stops: [0.0, 1.0],
-          colors: colors,
+          colors: colors!,
         ),
       ),
       child: child,

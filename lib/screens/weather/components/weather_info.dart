@@ -4,8 +4,8 @@ import '../../../colors.dart';
 import '../../../strings.dart';
 
 class WeatherInfo extends StatelessWidget {
-  final int temperature;
-  final String condition;
+  final int? temperature;
+  final String? condition;
 
   WeatherInfo({
     this.temperature,
@@ -26,7 +26,7 @@ class WeatherInfo extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.0),
                   child: Text(
-                    temperature.toString() ?? noTemperature,
+                    temperature.toString(),
                     style: TextStyle(
                       color: textColor,
                       fontSize: 96.0,

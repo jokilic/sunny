@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import '../colors.dart';
 
 class GeneralButton extends StatelessWidget {
-  final String text;
+  final String? text;
   final double horizontalPadding;
   final double verticalPadding;
-  final Function onPressed;
+  final Function? onPressed;
 
   GeneralButton({
     this.text,
@@ -24,7 +24,7 @@ class GeneralButton extends StatelessWidget {
           vertical: verticalPadding,
         ),
         child: Text(
-          text,
+          text!,
           style: TextStyle(
             fontSize: 18.0,
             fontWeight: FontWeight.w700,
@@ -32,7 +32,7 @@ class GeneralButton extends StatelessWidget {
           ),
         ),
       ),
-      onPressed: onPressed,
+      onPressed: onPressed as void Function()?,
       textColor: textColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(50.0),

@@ -1,7 +1,7 @@
 class DailyForecast {
-  String date;
-  String condition;
-  String conditionIcon;
+  String? date;
+  String? condition;
+  String? conditionIcon;
 
   DailyForecast({
     this.date,

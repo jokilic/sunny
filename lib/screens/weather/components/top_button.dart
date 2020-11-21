@@ -3,9 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sunny/colors.dart';
 
 class TopButton extends StatelessWidget {
-  final Function onTap;
-  final String icon;
-  final EdgeInsetsGeometry margin;
+  final Function? onTap;
+  final String? icon;
+  final EdgeInsetsGeometry? margin;
 
   TopButton({
     this.onTap,
@@ -22,9 +22,9 @@ class TopButton extends StatelessWidget {
       height: size.height * 0.06,
       margin: margin,
       child: GestureDetector(
-        onTap: onTap,
+        onTap: onTap as void Function()?,
         child: SvgPicture.asset(
-          icon,
+          icon!,
           color: textColor,
         ),
       ),

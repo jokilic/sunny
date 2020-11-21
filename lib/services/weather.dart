@@ -15,10 +15,10 @@ class Weather {
     return weatherData;
   }
 
-  Future<List<String>> getLocationName() async {
+  Future<List<String?>> getLocationName() async {
     await location.getLocation();
 
-    List<String> locationName = [];
+    List<String?> locationName = [];
     locationName.add(location.cityName);
     locationName.add(location.countryName);
 
@@ -45,10 +45,10 @@ class Weather {
     return weatherData;
   }
 
-  Future<List<String>> getCustomName(chosenCity) async {
+  Future<List<String?>> getCustomName(chosenCity) async {
     await location.getCoordinates(chosenCity);
 
-    List<String> locationName = [];
+    List<String?> locationName = [];
     locationName.add(location.cityName);
     locationName.add(location.countryName);
 

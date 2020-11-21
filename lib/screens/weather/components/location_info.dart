@@ -6,10 +6,10 @@ import '../../../strings.dart';
 import '../weather_screen.dart';
 
 class LocationInfo extends StatelessWidget {
-  final String cityName;
-  final String countryName;
-  final String currentTime;
-  final WeatherType weatherType;
+  final String? cityName;
+  final String? countryName;
+  final String? currentTime;
+  final WeatherType? weatherType;
 
   LocationInfo({
     this.cityName,
@@ -35,7 +35,7 @@ class LocationInfo extends StatelessWidget {
           SizedBox(height: 8.0),
           Container(
             child: Text(
-              '$cityName, $countryName' ?? noCity,
+              '$cityName, $countryName',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: textColor,

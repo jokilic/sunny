@@ -5,9 +5,9 @@ import '../../../colors.dart';
 import '../../../strings.dart';
 
 class HourlyForecastWidget extends StatelessWidget {
-  final int hourlyForecastHour;
-  final int hourlyForecastTemperature;
-  final String hourlyForecastConditionIcon;
+  final int? hourlyForecastHour;
+  final int? hourlyForecastTemperature;
+  final String? hourlyForecastConditionIcon;
 
   HourlyForecastWidget({
     this.hourlyForecastHour,
@@ -22,7 +22,7 @@ class HourlyForecastWidget extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            '${hourlyForecastHour.toString()}:00' ?? noForecastHour,
+            '${hourlyForecastHour.toString()}:00',
             textAlign: TextAlign.center,
             style: TextStyle(
               color: textColor,
@@ -42,7 +42,7 @@ class HourlyForecastWidget extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
-                  hourlyForecastTemperature.toString() ?? noTemperature,
+                  hourlyForecastTemperature.toString(),
                   style: TextStyle(
                     color: textColor,
                     fontSize: 16.0,

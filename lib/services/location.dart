@@ -5,10 +5,10 @@ import 'package:geocoding_platform_interface/geocoding_platform_interface.dart';
 import '../screens/weather/components/choose_city.dart';
 
 class LocationSunny {
-  double latitude;
-  double longitude;
-  String cityName;
-  String countryName;
+  late double latitude;
+  late double longitude;
+  String? cityName;
+  String? countryName;
 
   Future<void> getLocation() async {
     try {

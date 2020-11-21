@@ -5,9 +5,9 @@ import '../../../colors.dart';
 import '../../../strings.dart';
 
 class DailyForecastWidget extends StatelessWidget {
-  final String dailyForecastDate;
-  final String dailyForecastCondition;
-  final String dailyForecastConditionIcon;
+  final String? dailyForecastDate;
+  final String? dailyForecastCondition;
+  final String? dailyForecastConditionIcon;
 
   DailyForecastWidget({
     this.dailyForecastCondition,

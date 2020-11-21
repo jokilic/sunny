@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../colors.dart';
 
 class CityTextField extends StatelessWidget {
-  final String hintText;
-  final Function onFieldSubmitted;
+  final String? hintText;
+  final Function? onFieldSubmitted;
 
   CityTextField({
     this.hintText,
@@ -16,7 +16,7 @@ class CityTextField extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 36.0, vertical: 12.0),
       child: TextFormField(
-        onFieldSubmitted: onFieldSubmitted,
+        onFieldSubmitted: onFieldSubmitted as void Function(String)?,
         style: TextStyle(
           color: textColor,
           fontSize: 20.0,

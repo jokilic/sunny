@@ -1,8 +1,8 @@
 class CurrentForecast {
-  int temperature;
-  String time;
-  String condition;
-  String conditionIcon;
+  int? temperature;
+  String? time;
+  String? condition;
+  String? conditionIcon;
 
   CurrentForecast({
     this.temperature,

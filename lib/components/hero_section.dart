@@ -4,8 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../strings.dart';
 
 class HeroSection extends StatelessWidget {
-  final Color iconColor;
-  final Color textColor;
+  final Color? iconColor;
+  final Color? textColor;
 
   HeroSection({
     this.iconColor,
@@ -55,7 +55,7 @@ class HeroSection extends StatelessWidget {
         SizedBox(width: 8.0),
         SvgPicture.asset(
           sunIcon,
-          color: iconColor,
+          color: iconColor!,
           height: 110.0,
         ),
       ],

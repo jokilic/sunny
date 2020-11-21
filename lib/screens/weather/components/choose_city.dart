@@ -8,7 +8,7 @@ import '../../../services/weather.dart';
 import '../weather_screen.dart';
 import './city_textfield.dart';
 
-double modalHeightPercentage;
+late double modalHeightPercentage;
 
 enum Fetching {
   yes,

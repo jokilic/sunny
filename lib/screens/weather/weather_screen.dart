@@ -33,9 +33,9 @@ class WeatherScreen extends StatefulWidget {
 
   final locationWeather;
   final timezoneData;
-  final String cityName;
-  final String countryName;
-  final WeatherType weatherType;
+  final String? cityName;
+  final String? countryName;
+  final WeatherType? weatherType;
 
   WeatherScreen({
     this.locationWeather,
@@ -66,15 +66,15 @@ class _WeatherScreenState extends State<WeatherScreen> {
     updateUI(widget.locationWeather);
   }
 
-  double getTemperature(dynamic weatherData, int index) =>
+  double? getTemperature(dynamic weatherData, int index) =>
       weatherData['properties']['timeseries'][index]['data']['instant']
           ['details']['air_temperature'];
 
-  String getWeatherCondition(dynamic weatherData, int index) =>
+  String? getWeatherCondition(dynamic weatherData, int index) =>
       weatherData['properties']['timeseries'][index]['data']['next_1_hours']
           ['summary']['symbol_code'];
 
-  String getDailyWeatherCondition(dynamic weatherData, int index) =>
+  String? getDailyWeatherCondition(dynamic weatherData, int index) =>
       weatherData['properties']['timeseries'][index]['data']['next_12_hours']
           ['summary']['symbol_code'];
 
@@ -98,7 +98,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
     currentForecast = CurrentForecast(
       time: DateFormat('E, dd MMM, H:mm').format(currentTimeDirty),
-      temperature: getTemperature(weatherData, 0).toInt(),
+      temperature: getTemperature(weatherData, 0)!.toInt(),
       conditionIcon:
           '$conditionIconRootAddress${getWeatherCondition(weatherData, 0)}.svg',
       condition: getCondition(currentForecast.condition),
@@ -117,7 +117,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
           conditionIcon:
               '$conditionIconRootAddress${getWeatherCondition(weatherData, i)}.svg',
           hour: currentHour,
-          temperature: getTemperature(weatherData, i).toInt(),
+          temperature: getTemperature(weatherData, i)!.toInt(),
         ),
       );
       currentHour++;
@@ -129,14 +129,14 @@ class _WeatherScreenState extends State<WeatherScreen> {
     int day;
     int month;
     String date;
-    String condition;
-    String conditionIcon;
-    String fullTime;
+    String? condition;
+    String? conditionIcon;
+    String? fullTime;
 
     for (int i = 0; i < 80; i++) {
       fullTime = weatherData['properties']['timeseries'][i]['time'];
 
-      hour = int.parse(fullTime.substring(11, 13));
+      hour = int.parse(fullTime!.substring(11, 13));
       day = int.parse(fullTime.substring(8, 10));
       month = int.parse(fullTime.substring(5, 7));
 
@@ -148,11 +148,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
         dailyForecastList.add(
           DailyForecast(
-                  date: date,
-                  condition: condition,
-                  conditionIcon:
-                      '$conditionIconRootAddress$conditionIcon.svg') ??
-              noConditionIcon,
+              date: date,
+              condition: condition,
+              conditionIcon: '$conditionIconRootAddress$conditionIcon.svg'),
         );
       }
     }

@@ -1,8 +1,8 @@
 class HourlyForecast {
-  int hour;
-  int temperature;
-  String condition;
-  String conditionIcon;
+  int? hour;
+  int? temperature;
+  String? condition;
+  String? conditionIcon;
 
   HourlyForecast({
     this.hour,
