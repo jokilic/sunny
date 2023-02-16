@@ -26,7 +26,7 @@ class Sunny extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         fontFamily: 'Montserrat',
         textTheme: TextTheme(
-          headline1: TextStyle(
+          displayLarge: TextStyle(
             color: textColor,
             fontSize: 36.0,
             fontWeight: FontWeight.bold,

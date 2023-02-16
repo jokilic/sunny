@@ -1,6 +1,5 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
-import 'package:geocoding_platform_interface/geocoding_platform_interface.dart';
 
 import '../screens/weather/components/choose_city.dart';
 
@@ -12,8 +11,7 @@ class LocationSunny {
 
   Future<void> getLocation() async {
     try {
-      Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high);
+      Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
 
       latitude = position.latitude;
       longitude = position.longitude;

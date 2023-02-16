@@ -17,7 +17,7 @@ class GeneralButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
+    return TextButton(
       child: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: horizontalPadding,
@@ -33,12 +33,13 @@ class GeneralButton extends StatelessWidget {
         ),
       ),
       onPressed: onPressed,
-      textColor: textColor,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(50.0),
-        side: BorderSide(
-          color: textColor,
-          width: 3.0,
+      style: TextButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50.0),
+          side: BorderSide(
+            color: textColor,
+            width: 3.0,
+          ),
         ),
       ),
     );
