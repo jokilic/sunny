@@ -8,7 +8,7 @@ import '../../../components/general_button.dart';
 
 final AudioPlayer boomBabyPlayer = AudioPlayer()
   ..setAsset(
-    'boom.wav',
+    'assets/boom.wav',
     preload: false,
   );
 
