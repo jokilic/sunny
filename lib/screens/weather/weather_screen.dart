@@ -66,17 +66,11 @@ class _WeatherScreenState extends State<WeatherScreen> {
     updateUI(widget.locationWeather);
   }
 
-  double getTemperature(dynamic weatherData, int index) =>
-      weatherData['properties']['timeseries'][index]['data']['instant']
-          ['details']['air_temperature'];
+  double getTemperature(dynamic weatherData, int index) => weatherData['properties']['timeseries'][index]['data']['instant']['details']['air_temperature'];
 
-  String getWeatherCondition(dynamic weatherData, int index) =>
-      weatherData['properties']['timeseries'][index]['data']['next_1_hours']
-          ['summary']['symbol_code'];
+  String getWeatherCondition(dynamic weatherData, int index) => weatherData['properties']['timeseries'][index]['data']['next_1_hours']['summary']['symbol_code'];
 
-  String getDailyWeatherCondition(dynamic weatherData, int index) =>
-      weatherData['properties']['timeseries'][index]['data']['next_12_hours']
-          ['summary']['symbol_code'];
+  String getDailyWeatherCondition(dynamic weatherData, int index) => weatherData['properties']['timeseries'][index]['data']['next_12_hours']['summary']['symbol_code'];
 
   int getCurrentHour(dynamic timezoneData) {
     String hour = timezoneData['formatted'];
@@ -99,8 +93,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
     currentForecast = CurrentForecast(
       time: DateFormat('E, dd MMM, H:mm').format(currentTimeDirty),
       temperature: getTemperature(weatherData, 0).toInt(),
-      conditionIcon:
-          '$conditionIconRootAddress${getWeatherCondition(weatherData, 0)}.svg',
+      conditionIcon: '$conditionIconRootAddress${getWeatherCondition(weatherData, 0)}.svg',
       condition: getCondition(currentForecast.condition),
     );
   }
@@ -114,8 +107,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
       hourlyForecastList.add(
         HourlyForecast(
           condition: getWeatherCondition(weatherData, i),
-          conditionIcon:
-              '$conditionIconRootAddress${getWeatherCondition(weatherData, i)}.svg',
+          conditionIcon: '$conditionIconRootAddress${getWeatherCondition(weatherData, i)}.svg',
           hour: currentHour,
           temperature: getTemperature(weatherData, i).toInt(),
         ),
@@ -147,12 +139,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
         condition = getCondition(condition);
 
         dailyForecastList.add(
-          DailyForecast(
-                  date: date,
-                  condition: condition,
-                  conditionIcon:
-                      '$conditionIconRootAddress$conditionIcon.svg') ??
-              noConditionIcon,
+          DailyForecast(date: date, condition: condition, conditionIcon: '$conditionIconRootAddress$conditionIcon.svg') ?? noConditionIcon,
         );
       }
     }
@@ -196,10 +183,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           widget.weatherType == WeatherType.custom
                               ? SizedBox(
                                   width: 45.0,
-                                  child: TopButton(
-                                      onTap: () => fetchLocationWeather(),
-                                      icon: gpsIcon,
-                                      margin: EdgeInsets.only(left: 20.0)),
+                                  child: TopButton(onTap: () => fetchLocationWeather(), icon: gpsIcon, margin: EdgeInsets.only(left: 20.0)),
                                 )
                               : SizedBox(width: 45.0),
                           Row(
@@ -259,8 +243,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                   });
                                 },
                                 child: Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 10.0),
+                                  padding: EdgeInsets.symmetric(horizontal: 10.0),
                                   child: Column(
                                     children: [
                                       Text(
@@ -275,9 +258,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                       Container(
                                         margin: EdgeInsets.only(top: 5.0),
                                         decoration: BoxDecoration(
-                                          color: selectedIndex == index
-                                              ? textColor
-                                              : Colors.transparent,
+                                          color: selectedIndex == index ? textColor : Colors.transparent,
                                           shape: BoxShape.circle,
                                         ),
                                         width: 8.0,
@@ -296,14 +277,10 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                 scrollDirection: Axis.horizontal,
                                 physics: BouncingScrollPhysics(),
                                 itemCount: numberOfForecasts,
-                                itemBuilder: (context, index) =>
-                                    HourlyForecastWidget(
-                                  hourlyForecastHour:
-                                      hourlyForecastList[index].hour,
-                                  hourlyForecastConditionIcon:
-                                      hourlyForecastList[index].conditionIcon,
-                                  hourlyForecastTemperature:
-                                      hourlyForecastList[index].temperature,
+                                itemBuilder: (context, index) => HourlyForecastWidget(
+                                  hourlyForecastHour: hourlyForecastList[index].hour,
+                                  hourlyForecastConditionIcon: hourlyForecastList[index].conditionIcon,
+                                  hourlyForecastTemperature: hourlyForecastList[index].temperature,
                                 ),
                               ),
                             ),
@@ -314,14 +291,10 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                 scrollDirection: Axis.horizontal,
                                 physics: BouncingScrollPhysics(),
                                 itemCount: numberOfForecasts,
-                                itemBuilder: (context, index) =>
-                                    DailyForecastWidget(
-                                  dailyForecastDate:
-                                      dailyForecastList[index].date,
-                                  dailyForecastConditionIcon:
-                                      dailyForecastList[index].conditionIcon,
-                                  dailyForecastCondition:
-                                      dailyForecastList[index].condition,
+                                itemBuilder: (context, index) => DailyForecastWidget(
+                                  dailyForecastDate: dailyForecastList[index].date,
+                                  dailyForecastConditionIcon: dailyForecastList[index].conditionIcon,
+                                  dailyForecastCondition: dailyForecastList[index].condition,
                                 ),
                               ),
                             ),
