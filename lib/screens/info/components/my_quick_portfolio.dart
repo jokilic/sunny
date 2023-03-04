@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:audioplayers/audio_cache.dart';
 
 import '../../../colors.dart';
 import '../../../strings.dart';
 import '../../../components/general_button.dart';
 
-final AudioCache boomBabyPlayer = AudioCache();
+final AudioPlayer boomBabyPlayer = AudioPlayer()
+  ..setAsset(
+    'boom.wav',
+    preload: false,
+  );
 
 class MyQuickPortfolio extends StatelessWidget {
   @override
@@ -20,7 +24,9 @@ class MyQuickPortfolio extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(bottom: 16.0),
             child: GestureDetector(
-              onLongPress: () => boomBabyPlayer.play('boom.wav'),
+              onLongPress: () => boomBabyPlayer
+                ..load()
+                ..play(),
               child: CircleAvatar(
                 backgroundColor: textColor,
                 radius: 85.0,
@@ -36,7 +42,7 @@ class MyQuickPortfolio extends StatelessWidget {
             child: GeneralButton(
               text: aboutMeWebsiteString.toUpperCase(),
               horizontalPadding: 16.0,
-              onPressed: () => launch(josipKilicWebsite),
+              onPressed: () => launchUrl(Uri.parse(josipKilicWebsite)),
             ),
           ),
           SizedBox(height: 8.0),
@@ -48,7 +54,7 @@ class MyQuickPortfolio extends StatelessWidget {
                 child: GeneralButton(
                   text: aboutMeGitHubString.toUpperCase(),
                   horizontalPadding: 16.0,
-                  onPressed: () => launch(josipGithubWebsite),
+                  onPressed: () => launchUrl(Uri.parse(josipGithubWebsite)),
                 ),
               ),
               Padding(
@@ -56,7 +62,7 @@ class MyQuickPortfolio extends StatelessWidget {
                 child: GeneralButton(
                   text: aboutMeEmailString.toUpperCase(),
                   horizontalPadding: 16.0,
-                  onPressed: () => launch(josipKilicEmail),
+                  onPressed: () => launchUrl(Uri.parse(josipKilicEmail)),
                 ),
               ),
             ],

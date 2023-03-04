@@ -29,7 +29,10 @@ class LocationInfo extends StatelessWidget {
           if (weatherType == WeatherType.gps)
             SvgPicture.asset(
               gpsIcon,
-              color: textColor,
+              colorFilter: const ColorFilter.mode(
+                textColor,
+                BlendMode.srcIn,
+              ),
               height: 24.0,
             ),
           SizedBox(height: 8.0),

@@ -25,7 +25,10 @@ class TopButton extends StatelessWidget {
         onTap: onTap,
         child: SvgPicture.asset(
           icon,
-          color: textColor,
+          colorFilter: const ColorFilter.mode(
+            textColor,
+            BlendMode.srcIn,
+          ),
         ),
       ),
     );

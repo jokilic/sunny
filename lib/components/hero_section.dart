@@ -55,7 +55,10 @@ class HeroSection extends StatelessWidget {
         SizedBox(width: 8.0),
         SvgPicture.asset(
           sunIcon,
-          color: iconColor,
+          colorFilter: ColorFilter.mode(
+            iconColor,
+            BlendMode.srcIn,
+          ),
           height: 110.0,
         ),
       ],

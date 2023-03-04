@@ -88,8 +88,7 @@ class InfoScreen extends StatelessWidget {
                       ),
                       TextSpan(
                         text: aboutSunnyNinthString,
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () => launch(flutterWebsite),
+                        recognizer: TapGestureRecognizer()..onTap = () => launchUrl(Uri.parse(flutterWebsite)),
                       ),
                       TextSpan(
                         text: aboutSunnyTenthString,
@@ -119,8 +118,7 @@ class InfoScreen extends StatelessWidget {
                         style: TextStyle(
                           fontWeight: FontWeight.w700,
                         ),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () => launch(yrNoWebsite),
+                        recognizer: TapGestureRecognizer()..onTap = () => launchUrl(Uri.parse(yrNoWebsite)),
                       ),
                       TextSpan(
                         text: weatherProviderThirdString,
