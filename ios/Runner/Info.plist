@@ -8,6 +8,8 @@
 	<string>Sunny needs access to location to show you the weather.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Sunny needs access to location to show you the weather.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Sunny needs access to location to show you the weather.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -34,6 +36,8 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Sunny uses the microphone to play a sound when holding the developers picture</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
