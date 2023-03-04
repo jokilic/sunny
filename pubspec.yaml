@@ -12,10 +12,10 @@ dependencies:
   flutter:
     sdk: flutter
 
+  dio: 5.0.1
   flutter_svg: 2.0.2
   geocoding: 2.0.5
   geolocator: 9.0.2
-  http: 0.13.5
   intl: 0.18.0
   just_audio: 0.9.31
   loading: 1.0.2
